@@ -58,7 +58,7 @@ export class ListComponent implements OnInit {
       )
       .subscribe({
         next: (data: any) => {
-          console.log('data', data);
+          console.log('data', data?.content);
           this.dataSource = data?.content;
           this.totalElements = data?.totalElements;
         },

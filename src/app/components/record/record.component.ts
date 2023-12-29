@@ -42,9 +42,7 @@ export class RecordComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.recordId = params['id'];
-      console.log('Record ID:', this.recordId);
 
-      // Fetch data using the new method
       this.fetchRecordData();
     });
   }
