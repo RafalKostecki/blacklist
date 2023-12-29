@@ -26,6 +26,7 @@ export class ListComponent {
       editedAt: new Date(),
       city: 'Warszawa',
       content: 'Właściciel nasrał mi na wycieraczkę!',
+      verified: true,
     },
     {
       id: 'gfdsgfdg',
@@ -35,6 +36,7 @@ export class ListComponent {
       editedAt: new Date(),
       city: 'Kraków',
       content: 'Właściciel zniszczył mi rośliny doniczkowe podczas naprawy!',
+      verified: false,
     },
     {
       id: 'hjghjghj',
@@ -45,6 +47,7 @@ export class ListComponent {
       city: 'Gdańsk',
       content:
         'W trakcie wynajmu zepsuła się lodówka, a właściciel nie reaguje!',
+      verified: false,
     },
     {
       id: 'tyutyutyu',
@@ -54,6 +57,7 @@ export class ListComponent {
       editedAt: new Date(),
       city: 'Poznań',
       content: 'Właściciel nie naprawił awarii ogrzewania w zimie!',
+      verified: true,
     },
     {
       id: 'rtyrtyryt',
@@ -64,6 +68,7 @@ export class ListComponent {
       city: 'Łódź',
       content:
         'W wynajmowanym mieszkaniu jest problem z przeciekającym dachem!',
+      verified: false,
     },
     {
       id: 'yuityuityu',
@@ -73,6 +78,7 @@ export class ListComponent {
       editedAt: new Date(),
       city: 'Wrocław',
       content: 'Właściciel nie zwrócił kaucji mimo braku uszkodzeń!',
+      verified: false,
     },
     {
       id: 'poiupoipo',
@@ -83,6 +89,7 @@ export class ListComponent {
       city: 'Katowice',
       content:
         'Mieszkanie było brudne i nieposprzątane przy przekazaniu kluczy!',
+      verified: false,
     },
     {
       id: 'mnvmnvmnv',
@@ -92,6 +99,7 @@ export class ListComponent {
       editedAt: new Date(),
       city: 'Szczecin',
       content: 'Właściciel bez uprzedzenia wszedł do wynajmowanego mieszkania!',
+      verified: true,
     },
     {
       id: 'xcvxcvxcv',
@@ -101,6 +109,7 @@ export class ListComponent {
       editedAt: new Date(),
       city: 'Bydgoszcz',
       content: 'Właściciel nie naprawił usterek pomimo wielokrotnych zgłoszeń!',
+      verified: true,
     },
     {
       id: 'zxczxczxc',
@@ -110,6 +119,7 @@ export class ListComponent {
       editedAt: new Date(),
       city: 'Olsztyn',
       content: 'W wynajmowanym lokalu często wyłączają prąd bez uprzedzenia!',
+      verified: false,
     },
   ];
 

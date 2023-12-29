@@ -1,1 +1,25 @@
-<p>record works! {{ recordId }}</p>
+<div *ngIf="error">{{ error }}</div>
+<div *ngIf="!loading && !recordData">Not found record!</div>
+<mat-card *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</mat-card>
+<mat-card *ngIf="!loading && recordData" class="mat-typography">
+  <mat-card-header>
+    <h1>Blacklisted {{ recordId }}</h1>
+  </mat-card-header>
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile
+      ><mat-icon> person_pin</mat-icon>
+      <ul>
+        <li>Name: {{ recordData.name }}</li>
+        <li>Surname: {{ recordData.surname }}</li>
+      </ul></mat-grid-tile
+    >
+    <mat-grid-tile>{{ recordData.content }}</mat-grid-tile>
+  </mat-grid-list>
+
+  <div *ngIf="recordData.verified" class="verifiedBadge">
+    <mat-icon color="primary">verified_user</mat-icon>
+  </div>
+</mat-card>
