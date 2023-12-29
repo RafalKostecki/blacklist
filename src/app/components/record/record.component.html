@@ -22,4 +22,13 @@
   <div *ngIf="recordData.verified" class="verifiedBadge">
     <mat-icon color="primary">verified_user</mat-icon>
   </div>
+  <button
+    class="homeButton"
+    mat-icon-button
+    color="primary"
+    aria-label="Come back to home"
+    (click)="router.navigate(['/blacklisted'])"
+  >
+    <mat-icon>home</mat-icon>
+  </button>
 </mat-card>

@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule, DatePipe, HttpClientModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
   public displayedColumns: string[] = [
     'createdAt',
     'name',
@@ -17,113 +20,29 @@ export class ListComponent {
     'content',
     'city',
   ];
-  public dataSource = [
-    {
-      id: 'fafawfag',
-      name: 'Rafał',
-      surname: 'K',
-      createdAt: new Date(),
-      editedAt: new Date(),
-      city: 'Warszawa',
-      content: 'Właściciel nasrał mi na wycieraczkę!',
-      verified: true,
-    },
-    {
-      id: 'gfdsgfdg',
-      name: 'Anna',
-      surname: 'S',
-      createdAt: new Date(),
-      editedAt: new Date(),
-      city: 'Kraków',
-      content: 'Właściciel zniszczył mi rośliny doniczkowe podczas naprawy!',
-      verified: false,
-    },
-    {
-      id: 'hjghjghj',
-      name: 'Jan',
-      surname: 'D',
-      createdAt: new Date(),
-      editedAt: new Date(),
-      city: 'Gdańsk',
-      content:
-        'W trakcie wynajmu zepsuła się lodówka, a właściciel nie reaguje!',
-      verified: false,
-    },
-    {
-      id: 'tyutyutyu',
-      name: 'Ewa',
-      surname: 'M',
-      createdAt: new Date(),
-      editedAt: new Date(),
-      city: 'Poznań',
-      content: 'Właściciel nie naprawił awarii ogrzewania w zimie!',
-      verified: true,
-    },
-    {
-      id: 'rtyrtyryt',
-      name: 'Piotr',
-      surname: 'W',
-      createdAt: new Date(),
-      editedAt: new Date(),
-      city: 'Łódź',
-      content:
-        'W wynajmowanym mieszkaniu jest problem z przeciekającym dachem!',
-      verified: false,
-    },
-    {
-      id: 'yuityuityu',
-      name: 'Katarzyna',
-      surname: 'K',
-      createdAt: new Date(),
-      editedAt: new Date(),
-      city: 'Wrocław',
-      content: 'Właściciel nie zwrócił kaucji mimo braku uszkodzeń!',
-      verified: false,
-    },
-    {
-      id: 'poiupoipo',
-      name: 'Marcin',
-      surname: 'L',
-      createdAt: new Date(),
-      editedAt: new Date(),
-      city: 'Katowice',
-      content:
-        'Mieszkanie było brudne i nieposprzątane przy przekazaniu kluczy!',
-      verified: false,
-    },
-    {
-      id: 'mnvmnvmnv',
-      name: 'Magdalena',
-      surname: 'R',
-      createdAt: new Date(),
-      editedAt: new Date(),
-      city: 'Szczecin',
-      content: 'Właściciel bez uprzedzenia wszedł do wynajmowanego mieszkania!',
-      verified: true,
-    },
-    {
-      id: 'xcvxcvxcv',
-      name: 'Mateusz',
-      surname: 'P',
-      createdAt: new Date(),
-      editedAt: new Date(),
-      city: 'Bydgoszcz',
-      content: 'Właściciel nie naprawił usterek pomimo wielokrotnych zgłoszeń!',
-      verified: true,
-    },
-    {
-      id: 'zxczxczxc',
-      name: 'Alicja',
-      surname: 'K',
-      createdAt: new Date(),
-      editedAt: new Date(),
-      city: 'Olsztyn',
-      content: 'W wynajmowanym lokalu często wyłączają prąd bez uprzedzenia!',
-      verified: false,
-    },
-  ];
+  public loading: boolean = false;
+  public dataSource: any[] = [];
+  public error: any = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.fetchBlacklistData();
+  }
+
+  private fetchBlacklistData() {
+    console.log('hererare');
+    this.loading = true;
+
+    this.http.get('http://localhost:8080/api/blacklisted').subscribe({
+      next: (data: any) => {
+        console.log('data', data);
+        this.dataSource = data;
+      },
+      error: (error) => (this.error = error),
+      complete: () => (this.loading = false),
+    });
+  }
 
   public openRecord(element: any) {
     console.log('openRecord called');
