@@ -20,6 +20,7 @@ export class ListComponent implements OnInit {
     'content',
     'city',
   ];
+
   public loading: boolean = false;
   public dataSource: any[] = [];
   public error: any = null;
@@ -31,14 +32,10 @@ export class ListComponent implements OnInit {
   }
 
   private fetchBlacklistData() {
-    console.log('hererare');
     this.loading = true;
 
     this.http.get('http://localhost:8080/api/blacklisted').subscribe({
-      next: (data: any) => {
-        console.log('data', data);
-        this.dataSource = data;
-      },
+      next: (data: any) => (this.dataSource = data),
       error: (error) => (this.error = error),
       complete: () => (this.loading = false),
     });
